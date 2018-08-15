@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import { MapView, Location, Permissions } from "expo";
+import { Marker } from "react-native-maps";
 
 export default class App extends React.Component {
   state = {
@@ -10,6 +11,10 @@ export default class App extends React.Component {
       longitude: -122.4324,
       latitudeDelta: 0.0922,
       longitudeDelta: 0.0421
+    },
+    myLocation: {
+      latitude: null,
+      longitude: null
     },
     errorMessage: null
   };
@@ -32,8 +37,14 @@ export default class App extends React.Component {
     const { latitude, longitude } = location.coords;
     this.setState({
       mapLoaded: true,
-      region: { ...this.state.region, latitude, longitude }
+      region: { ...this.state.region, latitude, longitude },
+      myLocation: { latitude, longitude }
     });
+  };
+
+  _onRegionChangeComplete = region => {
+    console.log(region);
+    this.setState({ region });
   };
 
   render() {
@@ -47,6 +58,18 @@ export default class App extends React.Component {
         </View>
       );
     }
-    return <MapView style={{ flex: 1 }} initialRegion={this.state.region} />;
+    return (
+      <MapView
+        style={{ flex: 1 }}
+        initialRegion={this.state.region}
+        onRegionChangeComplete={this._onRegionChangeComplete}
+      >
+        <Marker
+          coordinate={this.state.myLocation}
+          title="Me"
+          image={require("./assets/person.svg")}
+        />
+      </MapView>
+    );
   }
 }
