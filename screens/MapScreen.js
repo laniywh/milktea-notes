@@ -92,6 +92,7 @@ class MapScreen extends React.Component {
   }
 }
 
+
 const styles = {
   buttonContainer: {
     position: "absolute",
