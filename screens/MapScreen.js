@@ -20,10 +20,6 @@ class MapScreen extends React.Component {
       latitude: null,
       longitude: null
     },
-    buttonIcon: {
-      name: 'search'
-    },
-
     errorMessage: null
   };
 
@@ -109,8 +105,8 @@ class MapScreen extends React.Component {
             large
             loading={ this.props.isFetching }
             backgroundColor='#FBC02D'
-            icon={ this.state.buttonIcon } 
-            tile="Search Here" 
+            icon={{ name: 'search' }} 
+            title="Search Here" 
             onPress={this._onButtonPress} />
         </View>
       </View>
