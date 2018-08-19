@@ -2,8 +2,9 @@ import React from "react";
 import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import { MapView, Location, Permissions } from "expo";
 import { connect } from "react-redux";
-import { Marker } from "react-native-maps";
-import { Button, Icon } from 'react-native-elements';
+import { Marker, Callout } from "react-native-maps";
+import { Button, Icon } from "react-native-elements";
+import StoreCard from "../components/StoreCard";
 
 import * as actions from "../actions";
 
@@ -48,7 +49,7 @@ class MapScreen extends React.Component {
 
   _onRegionChange = () => {
     this.props.updateFetchingState(true);
-  }
+  };
 
   _onRegionChangeComplete = region => {
     console.log(region);
@@ -58,17 +59,22 @@ class MapScreen extends React.Component {
 
   _onButtonPress = () => {
     this.props.fetchStores(this.state.region);
-
   };
 
   renderStores() {
     return this.props.stores.map(store => {
-      return (<Marker
-        coordinate={store.coordinates}
-        title={ store.name }
-        key={ store.id }
-      />);
-    })
+      return (
+        <Marker
+          coordinate={store.coordinates}
+          title={store.name}
+          key={store.id}
+        >
+          <Callout>
+            <StoreCard {...store} />
+          </Callout>
+        </Marker>
+      );
+    });
   }
 
   render() {
@@ -88,7 +94,7 @@ class MapScreen extends React.Component {
         <MapView
           style={{ flex: 1 }}
           initialRegion={this.state.region}
-          onRegionChange={ this._onRegionChange }
+          onRegionChange={this._onRegionChange}
           onRegionChangeComplete={this._onRegionChangeComplete}
         >
           <Marker
@@ -97,23 +103,22 @@ class MapScreen extends React.Component {
             image={require("../assets/person.svg")}
           />
 
-          { this.renderStores() }
-          
+          {this.renderStores()}
         </MapView>
         <View style={styles.buttonContainer}>
-          <Button 
+          <Button
             large
-            loading={ this.props.isFetching }
-            backgroundColor='#FBC02D'
-            icon={{ name: 'search' }} 
-            title="Search Here" 
-            onPress={this._onButtonPress} />
+            loading={this.props.isFetching}
+            backgroundColor="#FBC02D"
+            icon={{ name: "search" }}
+            title="Search Here"
+            onPress={this._onButtonPress}
+          />
         </View>
       </View>
     );
   }
 }
-
 
 const styles = {
   buttonContainer: {
@@ -127,9 +132,9 @@ const styles = {
 function mapPropsToState(state) {
   const { results, isFetching } = state.stores;
 
-  return { 
+  return {
     stores: results,
-    isFetching 
+    isFetching
   };
 }
 
