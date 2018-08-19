@@ -100,7 +100,7 @@ class MapScreen extends React.Component {
           <Marker
             coordinate={this.state.myLocation}
             title="Me"
-            image={require("../assets/person.svg")}
+            image={require("../assets/person_yellow_256.png")}
           />
 
           {this.renderStores()}
