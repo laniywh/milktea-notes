@@ -1,11 +1,8 @@
-import {
-  FETCH_STORES,
-  UPDATE_FETCHING_STATE
-} from "../actions/types";
+import { FETCH_STORES, UPDATE_FETCHING_STATE } from "../actions/types";
 
 const INITIAL_STATE = {
   results: [],
-  isFetching: false,
+  isFetching: false
 };
 
 export default function(state = INITIAL_STATE, action) {

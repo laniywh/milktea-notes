@@ -1,7 +1,15 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { View, Text } from "react-native";
+import Expo from "expo";
+
+import * as actions from "../actions";
 
 class NoteScreen extends Component {
+  componentWillMount() {
+    this.props.googleLogin();
+  }
+
   render() {
     return (
       <View>
@@ -16,4 +24,7 @@ class NoteScreen extends Component {
   }
 }
 
-export default NoteScreen;
+export default connect(
+  null,
+  actions
+)(NoteScreen);
