@@ -21,6 +21,12 @@ class StoreListItem extends Component {
             <Text>({store.review_count})</Text>
           </View>
         }
+        rightIcon={
+          <View>
+            <Icon name="navigation" />
+            <Text>{(store.distance / METERS_IN_A_MILE).toFixed(1)} mi.</Text>
+          </View>
+        }
       />
     );
   }
@@ -34,5 +40,7 @@ const styles = {
     paddingLeft: 10
   }
 };
+
+const METERS_IN_A_MILE = 1609.344;
 
 export default StoreListItem;
