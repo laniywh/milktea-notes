@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text } from "react-native";
 import { ListItem } from "react-native-elements";
 import { Rating, ButtonGroup, Icon } from "react-native-elements";
+import { NavigationActions } from "react-navigation";
 
 class StoreListItem extends Component {
   render() {
