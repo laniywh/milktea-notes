@@ -1,21 +1,49 @@
 import React, { Component } from "react";
-import { View } from "react-native";
+import { View, ScrollView } from "react-native";
 import { connect } from "react-redux";
-import { Icon } from "react-native-elements";
+import { Button } from "react-native-elements";
 import StoreInfo from "../components/StoreInfo";
+import NoteCard from "../components/NoteCard";
 
 class StoreScreen extends Component {
+  renderNotes(storeNotes, storeId) {
+    if (!storeNotes.storeId) {
+      return <View style={styles.notesContainer} />;
+    }
+
+    return (
+      <FlatList
+        style={styles.notesContainer}
+        data={storeNotes.storeId}
+        renderItem={this.renderItem}
+      />
+    );
+  }
+
+  renderItem({ item }) {
+    return <NoteCard note={item} />;
+  }
+
+  renderAddButton() {
+    return (
+      <View style={styles.buttonContainer}>
+        <Button large title="Add Notes" icon={{ name: "add" }} />
+      </View>
+    );
+  }
+
   render() {
     console.log(this.props);
     const store = this.props.navigation.getParam("store", {});
 
     return (
       <View style={{ flex: 1 }}>
-        {/* <Header centerComponent={{ text: store.name }} /> */}
         <View style={styles.header}>
           <StoreInfo {...store} />
         </View>
-        {showNotes(this.props.notes, store.id)}
+        {this.renderNotes(this.props.storeNotes, store.id)}
+
+        {this.renderAddButton()}
       </View>
     );
   }
@@ -30,34 +58,19 @@ const styles = {
     paddingBottom: 10
   },
   notesContainer: {
-    justifyContent: "center",
-    alignItems: "center"
+    marginBottom: 15,
+    flex: 1
+    // flexDirection: "row",
+    // flexWrap: "wrap"
+  },
+  buttonContainer: {
+    paddingBottom: 10
   }
 };
 
-function showNotes(notes, storeId) {
-  if (!notes.storeId) {
-    // no notes under current store
-    return (
-      <View style={styles.notesContainer}>
-        <Icon name="circle-with-plus" type="entypo" size={70} color="#BDBDBD" />
-      </View>
-    );
-  }
-
-  return (
-    <View>
-      <Text>Notes</Text>
-      <Text>Notes</Text>
-      <Text>Notes</Text>
-      <Text>Notes</Text>
-    </View>
-  );
-}
-
 function mapStateToProps(state) {
   return {
-    notes: state.notes
+    storeNotes: state.notes.storeNotes
   };
 }
 
