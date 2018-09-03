@@ -24,10 +24,21 @@ class StoreScreen extends Component {
     return <NoteCard note={item} />;
   }
 
+  onCreateNote() {
+    // navigate to create note screen
+    const store = this.props.navigation.getParam("store", {});
+    this.props.navigation.navigate("createNote", { storeId: store.id });
+  }
+
   renderAddButton() {
     return (
       <View style={styles.buttonContainer}>
-        <Button large title="Add Notes" icon={{ name: "add" }} />
+        <Button
+          large
+          title="New Note"
+          icon={{ name: "add" }}
+          onPress={this.onCreateNote.bind(this)}
+        />
       </View>
     );
   }

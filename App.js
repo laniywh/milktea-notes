@@ -12,13 +12,15 @@ import StoreListScreen from "./screens/StoreListScreen";
 import NoteScreen from "./screens/NoteScreen";
 import FavScreen from "./screens/FavScreen";
 import StoreScreen from "./screens/StoreScreen";
+import CreateNoteScreen from "./screens/CreateNoteScreen";
 
 export default class App extends React.Component {
   render() {
     const RootNavigator = createStackNavigator(
       {
         main: MainNavigator,
-        store: StoreScreen
+        store: StoreScreen,
+        createNote: CreateNoteScreen
       },
       {
         initialRouteName: "main",
