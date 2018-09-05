@@ -81,7 +81,7 @@ const styles = {
 
 function mapStateToProps(state) {
   return {
-    storeNotes: state.notes.storeNotes
+    storeNotes: state.storeNotes
   };
 }
 
