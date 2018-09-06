@@ -13,7 +13,7 @@ class NoteForm extends Component {
         <FormInput
           inputStyle={styles.input}
           onChangeText={text =>
-            this.props.updateNoteForm({ prop: "name", value: text })
+            this.props.updateNoteForm({ prop: "drinkName", value: text })
           }
         />
         <FormLabel>Tea Rating</FormLabel>
@@ -22,7 +22,7 @@ class NoteForm extends Component {
           fractions={1}
           showRating
           onFinishRating={rating =>
-            this.props.updateNoteForm({ prop: "teaRating", rating })
+            this.props.updateNoteForm({ prop: "teaRating", value: rating })
           }
           imageSize={20}
         />
@@ -32,7 +32,7 @@ class NoteForm extends Component {
           fractions={1}
           showRating
           onFinishRating={rating =>
-            this.props.updateNoteForm({ prop: "bobaRating", rating })
+            this.props.updateNoteForm({ prop: "bobaRating", value: rating })
           }
           imageSize={20}
         />

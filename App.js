@@ -2,6 +2,9 @@ import React from "react";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
+import { persistStore, persistReducer } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
+import storage from "redux-persist/lib/storage"; // defaults to localStorage for web and AsyncStorage for react-native
 import reducers from "./reducers";
 import { createStackNavigator } from "react-navigation";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
@@ -28,10 +31,23 @@ export default class App extends React.Component {
       }
     );
 
-    const store = createStore(reducers, {}, applyMiddleware(thunk));
+    const persistConfig = {
+      key: "root",
+      storage,
+      whitelist: ["notes", "storeNotes", "favNotes"]
+    };
+
+    const persistedReducer = persistReducer(persistConfig, reducers);
+
+    const store = createStore(persistedReducer, {}, applyMiddleware(thunk));
+    const persistor = persistStore(store);
+    // persistor.purge();
+
     return (
       <Provider store={store}>
-        <RootNavigator />
+        <PersistGate loading={null} persistor={persistor}>
+          <RootNavigator />
+        </PersistGate>
       </Provider>
     );
   }

@@ -6,4 +6,3 @@ export const FACEBOOK_LOGIN_SUCCESS = "facebook_login_success";
 export const FACEBOOK_LOGIN_FAIL = "facebook_login_fail";
 export const UPDATE_NOTE_FORM = "update_note_form";
 export const SAVE_NOTE = "save_note";
-export const CREATE_NOTE = "create_note";

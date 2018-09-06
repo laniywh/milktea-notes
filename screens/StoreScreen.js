@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, ScrollView } from "react-native";
+import { View, FlatList } from "react-native";
 import { connect } from "react-redux";
 import { Button } from "react-native-elements";
 import StoreInfo from "../components/StoreInfo";
@@ -7,20 +7,33 @@ import NoteCard from "../components/NoteCard";
 
 class StoreScreen extends Component {
   renderNotes(storeNotes, storeId) {
-    if (!storeNotes.storeId) {
+    // console.log(storeNotes);
+    // console.log(storeId);
+    // console.log(storeNotes.storeId);
+    if (!storeNotes[storeId]) {
       return <View style={styles.notesContainer} />;
     }
+
+    // create array of store notes
+    const notes = storeNotes[storeId].map(noteId => {
+      return this.props.notes.noteObjects[noteId];
+    });
 
     return (
       <FlatList
         style={styles.notesContainer}
-        data={storeNotes.storeId}
+        data={notes}
         renderItem={this.renderItem}
+        keyExtractor={(note, index) => {
+          index.toString();
+        }}
       />
     );
   }
 
   renderItem({ item }) {
+    console.log("renderItem");
+    console.log(item);
     return <NoteCard note={item} />;
   }
 
@@ -80,8 +93,10 @@ const styles = {
 };
 
 function mapStateToProps(state) {
+  const { notes, storeNotes } = state;
   return {
-    storeNotes: state.storeNotes
+    storeNotes,
+    notes
   };
 }
 
