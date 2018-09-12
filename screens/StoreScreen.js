@@ -11,7 +11,7 @@ class StoreScreen extends Component {
     // console.log(storeId);
     // console.log(storeNotes.storeId);
     if (!storeNotes[storeId]) {
-      return <View style={styles.notesContainer} />;
+      return <View style={{ flex: 1 }} />;
     }
 
     // create array of store notes
@@ -21,11 +21,12 @@ class StoreScreen extends Component {
 
     return (
       <FlatList
-        style={styles.notesContainer}
+        contentContainerStyle={styles.notesContainer}
+        numColumns={2}
         data={notes}
         renderItem={this.renderItem}
         keyExtractor={(note, index) => {
-          index.toString();
+          return index.toString();
         }}
       />
     );
@@ -83,9 +84,7 @@ const styles = {
   },
   notesContainer: {
     marginBottom: 15,
-    flex: 1
-    // flexDirection: "row",
-    // flexWrap: "wrap"
+    alignItems: "center"
   },
   buttonContainer: {
     paddingBottom: 10
