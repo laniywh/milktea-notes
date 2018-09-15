@@ -5,7 +5,7 @@ import { Button } from "react-native-elements";
 
 import * as actions from "../actions";
 
-class NoteScreen extends Component {
+class NotesScreen extends Component {
   loginView() {
     return (
       <View style={styles.loginView}>
@@ -54,4 +54,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   actions
-)(NoteScreen);
+)(NotesScreen);

@@ -12,7 +12,7 @@ import { Icon } from "react-native-elements";
 
 import MapScreen from "./screens/MapScreen";
 import StoreListScreen from "./screens/StoreListScreen";
-import NoteScreen from "./screens/NoteScreen";
+import NotesScreen from "./screens/NotesScreen";
 import FavScreen from "./screens/FavScreen";
 import StoreScreen from "./screens/StoreScreen";
 import CreateNoteScreen from "./screens/CreateNoteScreen";
@@ -68,7 +68,7 @@ const MainNavigator = createMaterialBottomTabNavigator(
       }
     },
     note: {
-      screen: NoteScreen,
+      screen: NotesScreen,
       navigationOptions: {
         tabBarIcon: ({ focused, tintColor }) => (
           <Icon name="book" type="fontawesome5" />
