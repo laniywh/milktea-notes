@@ -15,6 +15,7 @@ export default function(state = INITIAL_STATE, action) {
 
 function saveNote(state, payload) {
   const { storeId, noteId } = payload;
+  var noteIdArray = [];
 
   if (state[storeId]) {
     // don't add note ID to state if editing existing note
@@ -25,8 +26,6 @@ function saveNote(state, payload) {
     // create new array by copying over existing note IDs
     noteIdArray = [...state[storeId]];
   }
-
-  var noteIdArray = [];
 
   return { ...state, [storeId]: [...noteIdArray, noteId] };
 }

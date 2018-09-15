@@ -16,9 +16,20 @@ export default function(state = INITIAL_STATE, action) {
           ...state.noteObjects,
           [noteId]: { ...noteForm, storeId }
         },
-        noteArray: [...state.noteArray, noteId]
+        noteArray: addToNoteArray(state, noteId)
       };
     default:
       return state;
   }
+}
+
+function addToNoteArray(state, noteId) {
+  const { noteArray } = state;
+  console.log(noteId);
+
+  if (!noteArray.includes(noteId)) {
+    return [...noteArray, noteId];
+  }
+
+  return noteArray;
 }

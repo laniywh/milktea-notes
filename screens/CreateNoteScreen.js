@@ -14,8 +14,6 @@ class CreateNoteScreen extends Component {
   }
 
   render() {
-    console.log(`create note screen props:`);
-    console.log(this.props);
     return (
       <View style={{ flex: 1, backgroundColor: "#fff" }}>
         <Header
