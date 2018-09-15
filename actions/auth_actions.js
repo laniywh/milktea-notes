@@ -7,10 +7,10 @@ import {
   FACEBOOK_LOGIN_SUCCESS,
   FACEBOOK_LOGIN_FAIL
 } from "./types";
-import {
-  GOOGLE_IOS_CLIENT_ID,
-  GOOGLE_ANDROID_CLIENT_ID
-} from "react-native-dotenv";
+// import {
+//   GOOGLE_IOS_CLIENT_ID,
+//   GOOGLE_ANDROID_CLIENT_ID
+// } from "react-native-dotenv";
 
 // Home to use Async Storage:
 // AsyncStorage.setItems('fb_token', token);

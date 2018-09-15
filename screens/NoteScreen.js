@@ -20,19 +20,19 @@ class NoteScreen extends Component {
   }
 
   render() {
-    if (this.props.loggedIn) {
-      return (
-        <View>
-          <Text>NoteScreen</Text>
-          <Text>NoteScreen</Text>
-          <Text>NoteScreen</Text>
-          <Text>NoteScreen</Text>
-          <Text>{this.props.token}</Text>
-          <Text>{this.props.loggedIn}</Text>
-        </View>
-      );
-    }
-    return this.loginView();
+    // if (this.props.loggedIn) {
+    return (
+      <View>
+        <Text>NoteScreen</Text>
+        <Text>NoteScreen</Text>
+        <Text>NoteScreen</Text>
+        <Text>NoteScreen</Text>
+        <Text>{this.props.token}</Text>
+        <Text>{this.props.loggedIn}</Text>
+      </View>
+    );
+    // }
+    // return this.loginView();
   }
 }
 
