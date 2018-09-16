@@ -8,3 +8,4 @@ export const UPDATE_NOTE_FORM = "update_note_form";
 export const SAVE_NOTE = "save_note";
 export const EDIT_NOTE = "edit_note";
 export const DELETE_NOTE = "delete_note";
+export const CLEAR_FORM = "clear_form";

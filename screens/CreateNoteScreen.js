@@ -7,6 +7,10 @@ import * as actions from "../actions";
 import NoteForm from "../components/NoteForm";
 
 class CreateNoteScreen extends Component {
+  componentWillMount() {
+    console.log("call clear form");
+    this.props.clearForm();
+  }
   onSave() {
     const storeId = this.props.navigation.getParam("storeId", {});
     const noteForm = this.props.noteForm;

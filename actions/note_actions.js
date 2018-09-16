@@ -1,4 +1,10 @@
-import { UPDATE_NOTE_FORM, SAVE_NOTE, EDIT_NOTE, DELETE_NOTE } from "./types";
+import {
+  UPDATE_NOTE_FORM,
+  SAVE_NOTE,
+  EDIT_NOTE,
+  DELETE_NOTE,
+  CLEAR_FORM
+} from "./types";
 
 export const updateNoteForm = ({ prop, value }) => {
   return {
@@ -27,5 +33,11 @@ export const deleteNote = noteId => {
   return {
     type: DELETE_NOTE,
     payload: noteId
+  };
+};
+
+export const clearForm = () => {
+  return {
+    type: CLEAR_FORM
   };
 };
