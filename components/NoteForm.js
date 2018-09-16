@@ -7,10 +7,12 @@ import * as actions from "../actions";
 
 class NoteForm extends Component {
   render() {
+    // console.log(this.props);
     return (
       <View>
         <FormLabel>Drink Name</FormLabel>
         <FormInput
+          value={this.props.drinkName}
           inputStyle={styles.input}
           onChangeText={text =>
             this.props.updateNoteForm({ prop: "drinkName", value: text })
@@ -18,6 +20,7 @@ class NoteForm extends Component {
         />
         <FormLabel>Tea Rating</FormLabel>
         <Rating
+          startingValue={Number(this.props.teaRating)}
           type="star"
           fractions={1}
           showRating
@@ -28,6 +31,7 @@ class NoteForm extends Component {
         />
         <FormLabel>Boba Rating</FormLabel>
         <Rating
+          startingValue={Number(this.props.bobaRating)}
           type="star"
           fractions={1}
           showRating
@@ -47,7 +51,12 @@ const styles = {
   }
 };
 
+const mapStateToProps = state => {
+  const { drinkName, teaRating, bobaRating, notes, avgRating } = state.noteForm;
+  return { drinkName, teaRating, bobaRating, notes, avgRating };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   actions
 )(NoteForm);

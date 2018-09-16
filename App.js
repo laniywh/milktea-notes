@@ -16,6 +16,7 @@ import NotesScreen from "./screens/NotesScreen";
 import FavScreen from "./screens/FavScreen";
 import StoreScreen from "./screens/StoreScreen";
 import CreateNoteScreen from "./screens/CreateNoteScreen";
+import NoteScreen from "./screens/NoteScreen";
 
 export default class App extends React.Component {
   render() {
@@ -23,7 +24,8 @@ export default class App extends React.Component {
       {
         main: MainNavigator,
         store: StoreScreen,
-        createNote: CreateNoteScreen
+        createNote: CreateNoteScreen,
+        note: NoteScreen
       },
       {
         initialRouteName: "main",
@@ -67,7 +69,7 @@ const MainNavigator = createMaterialBottomTabNavigator(
         tabBarIcon: ({ focused, tintColor }) => <Icon name="list" />
       }
     },
-    note: {
+    notes: {
       screen: NotesScreen,
       navigationOptions: {
         tabBarIcon: ({ focused, tintColor }) => (

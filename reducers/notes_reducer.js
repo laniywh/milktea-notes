@@ -1,5 +1,5 @@
 import { REHYDRATE } from "redux-persist";
-import { SAVE_NOTE, CREATE_NOTE } from "../actions/types";
+import { SAVE_NOTE, EDIT_NOTE } from "../actions/types";
 
 //
 const INITIAL_STATE = {
@@ -14,10 +14,22 @@ export default function(state = INITIAL_STATE, action) {
       return {
         noteObjects: {
           ...state.noteObjects,
-          [noteId]: { ...noteForm, storeId }
+          [noteId]: { ...noteForm, storeId, id: noteId }
         },
         noteArray: addToNoteArray(state, noteId)
       };
+    case EDIT_NOTE:
+      return {
+        ...state,
+        noteObjects: {
+          ...state.noteObjects,
+          [action.payload.noteId]: {
+            ...state.noteObjects.noteId,
+            ...action.payload.noteForm
+          }
+        }
+      };
+
     default:
       return state;
   }

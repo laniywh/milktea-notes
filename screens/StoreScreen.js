@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, FlatList } from "react-native";
+import { View, FlatList, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import { Button } from "react-native-elements";
 import StoreInfo from "../components/StoreInfo";
@@ -24,7 +24,7 @@ class StoreScreen extends Component {
         contentContainerStyle={styles.notesContainer}
         numColumns={2}
         data={notes}
-        renderItem={this.renderItem}
+        renderItem={this.renderItem.bind(this)}
         keyExtractor={(note, index) => {
           return index.toString();
         }}
@@ -33,9 +33,21 @@ class StoreScreen extends Component {
   }
 
   renderItem({ item }) {
-    console.log("renderItem");
+    // console.log("renderItem");
+    // console.log(item);
+    return (
+      <TouchableOpacity onPress={() => this.onNotePress(item)}>
+        <NoteCard note={item} />
+      </TouchableOpacity>
+    );
+    // return <NoteCard note={item} />;
+  }
+
+  onNotePress(item) {
+    // navigate to note screen
+    console.log("press note");
     console.log(item);
-    return <NoteCard note={item} />;
+    this.props.navigation.navigate("note", { noteId: item.id });
   }
 
   onCreateNote() {
@@ -58,7 +70,7 @@ class StoreScreen extends Component {
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const store = this.props.navigation.getParam("store", {});
 
     return (
