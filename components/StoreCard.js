@@ -1,8 +1,9 @@
 import React from "react";
 import { View, Text } from "react-native";
-import { Rating, ButtonGroup, Icon } from "react-native-elements";
+import { ButtonGroup, Icon } from "react-native-elements";
+import StoreRating from "./StoreRating";
 
-export default ({ name, rating, review_count }) => {
+export default props => {
   const component1 = () => <Icon name="navigation" />;
   const component2 = () => <Icon name="pencil" type="foundation" />;
 
@@ -10,25 +11,9 @@ export default ({ name, rating, review_count }) => {
 
   return (
     <View>
-      <Text>{name}</Text>
-      <View style={styles.ratingContainer}>
-        <Rating
-          imageSize={15}
-          readonly
-          startingValue={rating}
-          ratingCount={5}
-        />
-        <Text>({review_count})</Text>
-      </View>
+      <Text>{props.name}</Text>
+      <StoreRating {...props} />
       <ButtonGroup buttons={buttons} />
     </View>
   );
-};
-
-const styles = {
-  ratingContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    alignItems: "center"
-  }
 };

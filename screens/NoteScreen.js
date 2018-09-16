@@ -1,53 +1,87 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { View, Text } from "react-native";
-import { Button } from "react-native-elements";
+import { Button, Header } from "react-native-elements";
 
 import * as actions from "../actions";
+import NoteForm from "../components/NoteForm";
+import { Confirm } from "../components/common";
 
 class NoteScreen extends Component {
-  loginView() {
+  state = { showModal: false };
+
+  componentWillMount() {
+    const { noteObjects } = this.props;
+    const noteId = this.props.navigation.getParam("noteId", {});
+
+    // populate note form with current note info
+    _.each(noteObjects[noteId], (value, prop) => {
+      this.props.updateNoteForm({ prop, value });
+    });
+  }
+
+  onEdit() {
+    const noteId = this.props.navigation.getParam("noteId", {});
+    const noteForm = this.props.noteForm;
+    this.props.editNote({ noteId, noteForm });
+    this.props.navigation.navigate("store", {});
+  }
+
+  onAccept() {
+    const noteId = this.props.navigation.getParam("noteId", {});
+    this.props.deleteNote(noteId);
+    this.setState({ showModal: false });
+    this.props.navigation.navigate("store", {});
+  }
+
+  onDecline() {
+    this.setState({ showModal: false });
+  }
+  render() {
     return (
-      <View style={styles.loginView}>
-        <Text>You must login to create notes!</Text>
+      <View style={{ flex: 1, backgroundColor: "#fff" }}>
+        <Header
+          leftComponent={{
+            icon: "chevron-thin-left",
+            type: "entypo",
+            color: "#fff"
+          }}
+          centerComponent={{ text: "Create a Note", style: { color: "#fff" } }}
+        />
+        <NoteForm />
         <Button
           large
-          onPress={this.props.facebookLogin}
-          title="Login with Facebook"
+          containerViewStyle={{ marginBottom: 10 }}
+          title="Save"
+          onPress={this.onEdit.bind(this)}
         />
+        <Button
+          large
+          title="Delete"
+          backgroundColor="#B71C1C"
+          onPress={() => {
+            this.setState({ showModal: true });
+          }}
+        />
+
+        <Confirm
+          visible={this.state.showModal}
+          onAccept={this.onAccept.bind(this)}
+          onDecline={this.onDecline.bind(this)}
+        >
+          Are you sure you want to delete this?
+        </Confirm>
       </View>
     );
   }
-
-  render() {
-    if (this.props.loggedIn) {
-      return (
-        <View>
-          <Text>NoteScreen</Text>
-          <Text>NoteScreen</Text>
-          <Text>NoteScreen</Text>
-          <Text>NoteScreen</Text>
-          <Text>{this.props.token}</Text>
-          <Text>{this.props.loggedIn}</Text>
-        </View>
-      );
-    }
-    return this.loginView();
-  }
 }
 
-const styles = {
-  loginView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  }
-};
-
 const mapStateToProps = state => {
+  const { noteForm, notes } = state;
   return {
-    token: state.auth.token,
-    loggedIn: state.auth.token === "" ? false : true
+    noteForm,
+    noteObjects: notes.noteObjects
   };
 };
 

@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { View, Text } from "react-native";
 import { ListItem } from "react-native-elements";
-import { Rating, ButtonGroup, Icon } from "react-native-elements";
+import { ButtonGroup, Icon } from "react-native-elements";
+import { NavigationActions } from "react-navigation";
+import StoreRating from "./StoreRating";
 
 class StoreListItem extends Component {
   render() {
@@ -10,17 +12,7 @@ class StoreListItem extends Component {
       <ListItem
         avatar={{ uri: store.image_url }}
         title={store.name}
-        subtitle={
-          <View style={styles.ratingContainer}>
-            <Rating
-              imageSize={15}
-              readonly
-              startingValue={store.rating}
-              ratingCount={5}
-            />
-            <Text>({store.review_count})</Text>
-          </View>
-        }
+        subtitle={<StoreRating {...store} paddingLeft={10} />}
         rightIcon={
           <View>
             <Icon name="navigation" />
@@ -31,15 +23,6 @@ class StoreListItem extends Component {
     );
   }
 }
-
-const styles = {
-  ratingContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    alignItems: "center",
-    paddingLeft: 10
-  }
-};
 
 const METERS_IN_A_MILE = 1609.344;
 
