@@ -1,7 +1,6 @@
-import { REHYDRATE } from "redux-persist";
-import { SAVE_NOTE, EDIT_NOTE } from "../actions/types";
+import _ from "lodash";
+import { SAVE_NOTE, EDIT_NOTE, DELETE_NOTE } from "../actions/types";
 
-//
 const INITIAL_STATE = {
   noteObjects: {}, // stores note details; key: store ID + drink name (note ID)
   noteArray: [] // stores IDs of all the notes;  for displaying purpose
@@ -28,6 +27,17 @@ export default function(state = INITIAL_STATE, action) {
             ...action.payload.noteForm
           }
         }
+      };
+    case DELETE_NOTE:
+      let noteObjects = { ...state.noteObjects };
+      delete noteObjects[action.payload];
+      let noteArray = [...state.noteArray];
+      _.remove(noteArray, n => {
+        return n == action.payload;
+      });
+      return {
+        noteObjects,
+        noteArray
       };
 
     default:

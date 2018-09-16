@@ -6,8 +6,11 @@ import { Button, Header } from "react-native-elements";
 
 import * as actions from "../actions";
 import NoteForm from "../components/NoteForm";
+import { Confirm } from "../components/common";
 
 class NoteScreen extends Component {
+  state = { showModal: false };
+
   componentWillMount() {
     const { noteObjects } = this.props;
     const noteId = this.props.navigation.getParam("noteId", {});
@@ -22,12 +25,18 @@ class NoteScreen extends Component {
     const noteId = this.props.navigation.getParam("noteId", {});
     const noteForm = this.props.noteForm;
     this.props.editNote({ noteId, noteForm });
+    this.props.navigation.navigate("store", {});
   }
 
-  onDelete() {
-    const storeId = this.props.navigation.getParam("storeId", {});
-    const noteForm = this.props.noteForm;
-    this.props.saveNote({ storeId, noteForm });
+  onAccept() {
+    const noteId = this.props.navigation.getParam("noteId", {});
+    this.props.deleteNote(noteId);
+    this.setState({ showModal: false });
+    this.props.navigation.navigate("store", {});
+  }
+
+  onDecline() {
+    this.setState({ showModal: false });
   }
   render() {
     return (
@@ -51,8 +60,18 @@ class NoteScreen extends Component {
           large
           title="Delete"
           backgroundColor="#B71C1C"
-          onPress={this.onDelete.bind(this)}
+          onPress={() => {
+            this.setState({ showModal: true });
+          }}
         />
+
+        <Confirm
+          visible={this.state.showModal}
+          onAccept={this.onAccept.bind(this)}
+          onDecline={this.onDecline.bind(this)}
+        >
+          Are you sure you want to delete this?
+        </Confirm>
       </View>
     );
   }

@@ -11,6 +11,7 @@ class CreateNoteScreen extends Component {
     const storeId = this.props.navigation.getParam("storeId", {});
     const noteForm = this.props.noteForm;
     this.props.saveNote({ storeId, noteForm });
+    this.props.navigation.navigate("store", {});
   }
 
   render() {

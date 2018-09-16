@@ -7,3 +7,4 @@ export const FACEBOOK_LOGIN_FAIL = "facebook_login_fail";
 export const UPDATE_NOTE_FORM = "update_note_form";
 export const SAVE_NOTE = "save_note";
 export const EDIT_NOTE = "edit_note";
+export const DELETE_NOTE = "delete_note";
