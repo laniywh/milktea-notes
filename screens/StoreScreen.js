@@ -1,15 +1,12 @@
 import React, { Component } from "react";
-import { View, FlatList, TouchableOpacity } from "react-native";
+import { View } from "react-native";
 import { connect } from "react-redux";
 import { Button } from "react-native-elements";
 import StoreInfo from "../components/StoreInfo";
-import NoteCard from "../components/NoteCard";
+import NoteList from "../components/NoteList";
 
 class StoreScreen extends Component {
   renderNotes(storeNotes, storeId) {
-    // console.log(storeNotes);
-    // console.log(storeId);
-    // console.log(storeNotes.storeId);
     if (!storeNotes[storeId]) {
       return <View style={{ flex: 1 }} />;
     }
@@ -19,36 +16,35 @@ class StoreScreen extends Component {
       return this.props.notes.noteObjects[noteId];
     });
 
-    return (
-      <FlatList
-        contentContainerStyle={styles.notesContainer}
-        numColumns={2}
-        data={notes}
-        renderItem={this.renderItem.bind(this)}
-        keyExtractor={(note, index) => {
-          return index.toString();
-        }}
-      />
-    );
+    return <NoteList notes={notes} navigation={this.props.navigation} />;
+
+    // return (
+    //   <FlatList
+    //     contentContainerStyle={styles.notesContainer}
+    //     numColumns={2}
+    //     data={notes}
+    //     renderItem={this.renderItem.bind(this)}
+    //     keyExtractor={(note, index) => {
+    //       return index.toString();
+    //     }}
+    //   />
+    // );
   }
 
-  renderItem({ item }) {
-    // console.log("renderItem");
-    // console.log(item);
-    return (
-      <TouchableOpacity onPress={() => this.onNotePress(item)}>
-        <NoteCard note={item} />
-      </TouchableOpacity>
-    );
-    // return <NoteCard note={item} />;
-  }
+  // renderItem({ item }) {
+  //   return (
+  //     <TouchableOpacity onPress={() => this.onNotePress(item)}>
+  //       <NoteCard note={item} />
+  //     </TouchableOpacity>
+  //   );
+  // }
 
-  onNotePress(item) {
-    // navigate to note screen
-    console.log("press note");
-    console.log(item);
-    this.props.navigation.navigate("note", { noteId: item.id });
-  }
+  // onNotePress(item) {
+  //   // navigate to note screen
+  //   console.log("press note");
+  //   console.log(item);
+  //   this.props.navigation.navigate("note", { noteId: item.id });
+  // }
 
   onCreateNote() {
     // navigate to create note screen

@@ -8,7 +8,6 @@ import NoteForm from "../components/NoteForm";
 
 class CreateNoteScreen extends Component {
   componentWillMount() {
-    console.log("call clear form");
     this.props.clearForm();
   }
   onSave() {
