@@ -4,6 +4,7 @@ import { View, Text } from "react-native";
 import { Button } from "react-native-elements";
 
 import * as actions from "../actions";
+import NoteList from "../components/NoteList";
 
 class NotesScreen extends Component {
   loginView() {
@@ -20,19 +21,9 @@ class NotesScreen extends Component {
   }
 
   render() {
-    // if (this.props.loggedIn) {
-    return (
-      <View>
-        <Text>NoteScreen</Text>
-        <Text>NoteScreen</Text>
-        <Text>NoteScreen</Text>
-        <Text>NoteScreen</Text>
-        <Text>{this.props.token}</Text>
-        <Text>{this.props.loggedIn}</Text>
-      </View>
-    );
-    // }
-    // return this.loginView();
+    const noteObjects = this.props.notes.noteObjects;
+    const navigation = this.props;
+    return <NoteList notes={noteObjects} navigation={navigation} />;
   }
 }
 
@@ -45,9 +36,9 @@ const styles = {
 };
 
 const mapStateToProps = state => {
+  const { notes } = state;
   return {
-    token: state.auth.token,
-    loggedIn: state.auth.token === "" ? false : true
+    notes
   };
 };
 

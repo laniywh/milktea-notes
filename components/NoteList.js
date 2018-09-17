@@ -16,8 +16,10 @@ class NoteList extends Component {
     this.props.navigation.navigate("note", { noteId: item.id });
   }
 
+  createNotes(notesArray) {}
+
   render() {
-    const { notes } = this.props;
+    const { notesArray } = this.props;
     return (
       <FlatList
         contentContainerStyle={styles.notesContainer}
