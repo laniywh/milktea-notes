@@ -12,11 +12,16 @@ class StoreScreen extends Component {
     }
 
     // create array of store notes
-    const notes = storeNotes[storeId].map(noteId => {
-      return this.props.notes.noteObjects[noteId];
-    });
+    // const notes = storeNotes[storeId].map(noteId => {
+    //   return this.props.notes.noteObjects[noteId];
+    // });
 
-    return <NoteList notes={notes} navigation={this.props.navigation} />;
+    return (
+      <NoteList
+        notesArray={storeNotes[storeId]}
+        navigation={this.props.navigation}
+      />
+    );
 
     // return (
     //   <FlatList

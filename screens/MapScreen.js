@@ -38,7 +38,7 @@ class MapScreen extends React.Component {
 
     let location = await Location.getCurrentPositionAsync({});
     this.setState({ location });
-    console.log(location);
+    // console.log(location);
     const { latitude, longitude } = location.coords;
     this.setState({
       mapLoaded: true,
@@ -52,7 +52,7 @@ class MapScreen extends React.Component {
   };
 
   _onRegionChangeComplete = region => {
-    console.log(region);
+    // console.log(region);
     this.setState({ region });
     this.props.updateFetchingState(false);
   };
@@ -78,7 +78,7 @@ class MapScreen extends React.Component {
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     if (!this.state.mapLoaded) {
       return (
         <View

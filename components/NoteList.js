@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { FlatList, TouchableOpacity } from "react-native";
 import NoteCard from "../components/NoteCard";
 
+// take an array of note IDs and render a list of notes
 class NoteList extends Component {
   renderItem({ item }) {
     return (
@@ -16,10 +18,17 @@ class NoteList extends Component {
     this.props.navigation.navigate("note", { noteId: item.id });
   }
 
-  createNotes(notesArray) {}
+  createNotes(notesArray) {
+    // create array of store notes
+    return notesArray.map(noteId => {
+      return this.props.notes.noteObjects[noteId];
+    });
+  }
 
   render() {
     const { notesArray } = this.props;
+    const notes = this.createNotes(notesArray);
+
     return (
       <FlatList
         contentContainerStyle={styles.notesContainer}
@@ -51,4 +60,14 @@ const styles = {
   }
 };
 
-export default NoteList;
+function mapStateToProps(state) {
+  const { notes } = state;
+  return {
+    notes
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(NoteList);
