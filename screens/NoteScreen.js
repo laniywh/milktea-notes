@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { View, Text } from "react-native";
 import { Button, Header } from "react-native-elements";
+import { StackActions } from "react-navigation";
 
 import * as actions from "../actions";
 import NoteForm from "../components/NoteForm";
@@ -25,7 +26,13 @@ class NoteScreen extends Component {
     const noteId = this.props.navigation.getParam("noteId", {});
     const noteForm = this.props.noteForm;
     this.props.editNote({ noteId, noteForm });
-    this.props.navigation.navigate("store", {});
+    // this.props.navigation.navigate("store", {});
+
+    const popAction = StackActions.pop({
+      n: 1
+    });
+
+    this.props.navigation.dispatch(popAction);
   }
 
   onAccept() {

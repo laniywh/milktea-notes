@@ -11,45 +11,13 @@ class StoreScreen extends Component {
       return <View style={{ flex: 1 }} />;
     }
 
-    // create array of store notes
-    // const notes = storeNotes[storeId].map(noteId => {
-    //   return this.props.notes.noteObjects[noteId];
-    // });
-
     return (
       <NoteList
         notesArray={storeNotes[storeId]}
         navigation={this.props.navigation}
       />
     );
-
-    // return (
-    //   <FlatList
-    //     contentContainerStyle={styles.notesContainer}
-    //     numColumns={2}
-    //     data={notes}
-    //     renderItem={this.renderItem.bind(this)}
-    //     keyExtractor={(note, index) => {
-    //       return index.toString();
-    //     }}
-    //   />
-    // );
   }
-
-  // renderItem({ item }) {
-  //   return (
-  //     <TouchableOpacity onPress={() => this.onNotePress(item)}>
-  //       <NoteCard note={item} />
-  //     </TouchableOpacity>
-  //   );
-  // }
-
-  // onNotePress(item) {
-  //   // navigate to note screen
-  //   console.log("press note");
-  //   console.log(item);
-  //   this.props.navigation.navigate("note", { noteId: item.id });
-  // }
 
   onCreateNote() {
     // navigate to create note screen

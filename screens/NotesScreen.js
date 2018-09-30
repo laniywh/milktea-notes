@@ -21,9 +21,9 @@ class NotesScreen extends Component {
   }
 
   render() {
-    const noteObjects = this.props.notes.noteObjects;
-    const navigation = this.props;
-    return <NoteList notes={noteObjects} navigation={navigation} />;
+    const { noteObjects, noteArray } = this.props.notes;
+    const { navigation } = this.props;
+    return <NoteList notesArray={noteArray} navigation={navigation} />;
   }
 }
 
