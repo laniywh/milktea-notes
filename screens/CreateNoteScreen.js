@@ -11,10 +11,12 @@ class CreateNoteScreen extends Component {
     this.props.clearForm();
   }
   onSave() {
+    const { saveNote, sortNotes, navigation, location } = this.props;
     const storeId = this.props.navigation.getParam("storeId", {});
     const noteForm = this.props.noteForm;
-    this.props.saveNote({ storeId, noteForm });
-    this.props.navigation.navigate("store", {});
+    saveNote({ storeId, noteForm });
+    navigation.navigate("store", {});
+    sortNotes(location);
   }
 
   render() {
@@ -36,10 +38,10 @@ class CreateNoteScreen extends Component {
 }
 
 const mapStateToProps = state => {
+  const { noteForm, location } = state;
   return {
-    noteForm: {
-      ...state.noteForm
-    }
+    noteForm,
+    location
   };
 };
 

@@ -3,7 +3,9 @@ import {
   SAVE_NOTE,
   EDIT_NOTE,
   DELETE_NOTE,
-  CLEAR_FORM
+  CLEAR_FORM,
+  CHANGE_SORT_METHOD,
+  SORT_NOTES
 } from "./types";
 
 export const updateNoteForm = ({ prop, value }) => {
@@ -39,5 +41,19 @@ export const deleteNote = noteId => {
 export const clearForm = () => {
   return {
     type: CLEAR_FORM
+  };
+};
+
+export const changeSortMethod = ({ sortMethod, location }) => {
+  return {
+    type: CHANGE_SORT_METHOD,
+    payload: { sortMethod, location }
+  };
+};
+
+export const sortNotes = location => {
+  return {
+    type: SORT_NOTES,
+    payload: location
   };
 };

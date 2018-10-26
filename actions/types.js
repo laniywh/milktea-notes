@@ -9,3 +9,5 @@ export const SAVE_NOTE = "save_note";
 export const EDIT_NOTE = "edit_note";
 export const DELETE_NOTE = "delete_note";
 export const CLEAR_FORM = "clear_form";
+export const CHANGE_SORT_METHOD = "change_sort_method";
+export const SORT_NOTES = "sort_notes";
