@@ -11,7 +11,7 @@ import { createMaterialBottomTabNavigator } from "react-navigation-material-bott
 import { Icon } from "react-native-elements";
 
 import MapScreen from "./screens/MapScreen";
-import StoreListScreen from "./screens/StoreListScreen";
+import ListScreen from "./screens/ListScreen";
 import NotesScreen from "./screens/NotesScreen";
 import FavScreen from "./screens/FavScreen";
 import StoreScreen from "./screens/StoreScreen";
@@ -22,10 +22,10 @@ export default class App extends React.Component {
   render() {
     const RootNavigator = createStackNavigator(
       {
-        main: MainNavigator,
-        store: StoreScreen,
-        createNote: CreateNoteScreen,
-        note: NoteScreen
+        main: MainNavigator
+        // store: StoreScreen,
+        // createNote: CreateNoteScreen,
+        // note: NoteScreen
       },
       {
         initialRouteName: "main",
@@ -48,7 +48,7 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <RootNavigator />
+          <MainNavigator />
         </PersistGate>
       </Provider>
     );
@@ -64,7 +64,7 @@ const MainNavigator = createMaterialBottomTabNavigator(
       }
     },
     list: {
-      screen: StoreListScreen,
+      screen: ListScreen,
       navigationOptions: {
         tabBarIcon: ({ focused, tintColor }) => <Icon name="list" />
       }

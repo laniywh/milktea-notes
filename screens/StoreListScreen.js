@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import { View, FlatList, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
-import { Header } from "react-native-elements";
+
 import StoreListItem from "../components/StoreListItem";
 
 class StoreListScreen extends Component {
@@ -20,10 +20,6 @@ class StoreListScreen extends Component {
   render() {
     return (
       <View>
-        <Header
-          leftComponent={{ icon: "menu", color: "#fff" }}
-          centerComponent={{ text: "Milktea Notes", style: { color: "#fff" } }}
-        />
         <FlatList
           data={this.props.stores}
           renderItem={this.renderItem.bind(this)}
