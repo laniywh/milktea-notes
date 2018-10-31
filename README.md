@@ -1,5 +1,5 @@
 # Milktea Notes
-Milktea Notes is a mobile app that I created to learn React Native. It helps a user to find nearby milktea places and to create notes on the drinks.
+Milktea Notes (under development) is a mobile app that I created to learn React Native. It helps a user to find nearby milktea places and to create notes on the drinks.
 
 ## Features
 - Show user location on a map
@@ -19,6 +19,14 @@ Milktea Notes is a mobile app that I created to learn React Native. It helps a u
 - JavaScript
 - HTML
 - CSS
+
+## Running Locally
+```
+npm install -g expo-cli
+npm install
+expo start
+```
+
 
 ## Learning Resources
 - [The Complete React Native and Redux Course](https://www.udemy.com/the-complete-react-native-and-redux-course/learn/v4/)
