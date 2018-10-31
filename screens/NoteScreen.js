@@ -3,11 +3,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { View, Text } from "react-native";
 import { Button, Header } from "react-native-elements";
-import { StackActions } from "react-navigation";
+import { StackActions, createMaterialTopTabNavigator } from "react-navigation";
 
 import * as actions from "../actions";
 import NoteForm from "../components/NoteForm";
 import { Confirm } from "../components/common";
+import NotesScreen from "./NotesScreen";
 
 class NoteScreen extends Component {
   state = { showModal: false };
